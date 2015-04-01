@@ -1,6 +1,7 @@
 package by.test;
 
 /**
+ * todo: Nice: will be unit test and api functions
  * Created by Vasilina on 31.03.2015.
  */
 public class Coins {

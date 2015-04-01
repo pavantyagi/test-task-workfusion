@@ -1,5 +1,8 @@
 package by.test;
 
+/**
+ * todo: Nice: will be unit test and api functions
+ */
 public class PereborString {
 
   private static String inputStr = "ABCDEF";

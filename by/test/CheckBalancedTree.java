@@ -7,6 +7,7 @@ import by.test.tree.OrdinaryTreeImpl;
 import java.util.*;
 
 /**
+ * todo: Nice: will be unit test and api functions
  * Created by Vasilina on 30.03.2015.
  */
 public class CheckBalancedTree {

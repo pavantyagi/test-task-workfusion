@@ -2,12 +2,15 @@ package by.test;
 
 import by.test.tree.BalancedLeaf;
 import by.test.tree.BalancedLeafImpl;
+import by.test.tree.Tree;
 import by.test.tree.Visitor;
 
 /**
+ * todo: Nice: will be unit test and api functions
+ * @see by.test.BalancedTreeImpl constructor, this is swing application to view tree result
  * Created by Vasilina on 30.03.2015.
  */
-public class BalancedTreeImpl<T extends Comparable> {
+public class BalancedTreeImpl<T extends Comparable> implements Tree<T, BalancedLeaf<T>> {
   public BalancedLeaf<T> rootLeaf;
 
   public static void main(String[] args) {
@@ -45,7 +48,6 @@ public class BalancedTreeImpl<T extends Comparable> {
     }
 
   }
-
 
   public BalancedLeaf<T> addLeaf(T value) {
     return addLeaf(rootLeaf, value);

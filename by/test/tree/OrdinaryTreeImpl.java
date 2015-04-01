@@ -3,7 +3,7 @@ package by.test.tree;
 /**
  * Created by Vasilina on 30.03.2015.
  */
-public class OrdinaryTreeImpl<T extends Comparable> {
+public class OrdinaryTreeImpl<T extends Comparable> implements Tree<T, Leaf<T>> {
   public Leaf<T> rootLeaf;
 
   public static void main(String[] args) {
@@ -42,7 +42,7 @@ public class OrdinaryTreeImpl<T extends Comparable> {
 
   }
 
-  public void addLeaf(T value) {
+  public Leaf<T> addLeaf(T value) {
     Leaf<T> leaf = new LeafImpl<T>();
     leaf.setValue(value);
     if (rootLeaf == null) {
@@ -50,6 +50,7 @@ public class OrdinaryTreeImpl<T extends Comparable> {
     } else {
       addLeaf(rootLeaf, leaf);
     }
+    return leaf;
   }
 
   private void addLeaf(Leaf<T> leaf, Leaf<T> childLeaf) {
