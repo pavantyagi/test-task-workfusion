@@ -18,9 +18,12 @@ public class Coins {
       i++;
     }
     printArray(arr, coins);
+    int countOfPerestanovok = 0;
     while (arr[coins.length -1 ] < number) {
       descrement(arr, coins);
+      countOfPerestanovok++;
     }
+    System.out.println("количество вариантов " + countOfPerestanovok);
     //i = coins.length -2 ;
     System.out.println("all");
   }
@@ -30,6 +33,14 @@ public class Coins {
       if (perebor[i] > 0) {
         perebor[i+1]+=(coins[i])/coins[i+1];
         perebor[i]--;
+        if (i<=perebor.length-3) {
+          //return all 5 from 1, 10 from 5 again
+          for (int j = perebor.length -2; j>i; j--) {
+            int deleted = perebor[j + 1] / coins[j];
+            perebor[j]+= deleted;
+            perebor[j+1]-=deleted*coins[j];
+          }
+        }
         printArray(perebor, coins);
         return;
       } else {
@@ -45,12 +56,12 @@ public class Coins {
       System.out.print(aPerebor + ",");
     }
     System.out.println("");
-    for (int i=0; i<coins.length; i++) {
-      if (perebor[i] > 0) {
-        System.out.print(perebor[i] + " монеты " + coins[i] + ",");
-      }
-    }
-    System.out.println("");
+//    for (int i=0; i<coins.length; i++) {
+//      if (perebor[i] > 0) {
+//        System.out.print(perebor[i] + " монеты " + coins[i] + ",");
+//      }
+//    }
+//    System.out.println("");
 
     return true;
   }
