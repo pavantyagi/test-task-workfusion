@@ -6,6 +6,7 @@ package by.test.tree;
 public class Heights {
   int maxHeight = Integer.MIN_VALUE;
   int minHeight = Integer.MAX_VALUE;
+  int numberOfLeafAnalyzed = 0;
 
   public int getMaxHeight() {
     return maxHeight;
@@ -21,6 +22,14 @@ public class Heights {
 
   public void setMinHeight(int minHeight) {
     this.minHeight = minHeight;
+  }
+
+  public int getNumberOfLeafAnalyzed() {
+    return numberOfLeafAnalyzed;
+  }
+
+  public void setNumberOfLeafAnalyzed(int numberOfLeafAnalyzed) {
+    this.numberOfLeafAnalyzed = numberOfLeafAnalyzed;
   }
 }
 

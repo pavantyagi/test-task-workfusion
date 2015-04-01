@@ -28,7 +28,7 @@ public class CheckBalancedTree {
     Set<Leaf> visited = new HashSet<Leaf>();
     Deque<Leaf> queue = new ArrayDeque<Leaf>();
     queue.add(rootLeaf);
-    while (queue.size() > 0) {
+    while (balanced(heights, false) && queue.size() > 0) {
       Leaf lastInStack = queue.getLast();
       System.out.println(lastInStack.getValue());
       if (hasChildren(lastInStack) && !childrenVisited(lastInStack, visited)) {
@@ -39,7 +39,7 @@ public class CheckBalancedTree {
         }
         height++;
       } else {
-        //we found last leave
+        //we found last leaf
         if (!hasChildren(lastInStack)) {
           updateHeights(heights, height);
         }
@@ -50,7 +50,7 @@ public class CheckBalancedTree {
 
     }
     //save height
-    if (balanced(heights)) {
+    if (balanced(heights, true)) {
       System.out.println("Дерево сбалансировано");
     } else {
       System.out.println("Дерево несбалансировано");
@@ -77,24 +77,28 @@ public class CheckBalancedTree {
     return visited.contains(lastInStack.getLeft());
   }
 
-  private static boolean balanced(Heights heights) {
+  private static boolean balanced(Heights heights, boolean allTreeScanned) {
     if (heights.getMaxHeight() == Integer.MIN_VALUE) {
-      //empty tree
+      //empty tree or not analyzed still, initial value
       return true;
     }
-    if (heights.getMinHeight() == Integer.MAX_VALUE) {
-      //tree is not balanced at all all elements on one side
-      heights.setMinHeight(0);
-      //return true;
+    if (allTreeScanned) {
+      if (heights.getMinHeight() == Integer.MAX_VALUE) {
+        //tree all to the right or to the left
+        heights.setMinHeight(0);
+      }
     }
-    if (heights.getMaxHeight() - heights.getMinHeight() > 1) {
-      return false;
+    if (allTreeScanned || (heights.getNumberOfLeafAnalyzed() >= 2 && heights.getMinHeight() > 0)) {
+      if (heights.getMaxHeight() - heights.getMinHeight() > 1) {
+        return false;
+      }
     }
     return true;
   }
 
   private static void updateHeights(Heights heights, int height) {
-    if (heights.getMaxHeight() < height) {
+    heights.setNumberOfLeafAnalyzed(heights.getNumberOfLeafAnalyzed()+1);
+    if (heights.getMaxHeight() <= height) {
       heights.setMaxHeight(height);
     } else {
       if (heights.getMinHeight() > height) {
