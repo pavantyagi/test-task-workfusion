@@ -8,7 +8,7 @@ public class Coins {
   public static void main(String[] args) {
     int[] coins = {25, 10, 5, 1};
     int arr[] = new int[coins.length];
-    int number = 23;
+    int number = 100;
     int i = 0 ;
     int diff = number;
     while (i <= coins.length -1) {
@@ -24,7 +24,7 @@ public class Coins {
       descrement(arr, coins);
       countOfPerestanovok++;
     }
-    System.out.println("количество вариантов " + countOfPerestanovok);
+    System.out.println("количество вариантов " + (countOfPerestanovok+1));
     //i = coins.length -2 ;
     System.out.println("all");
   }
@@ -32,14 +32,21 @@ public class Coins {
   private static void descrement(int[] perebor, int[] coins) {
     for (int i = perebor.length -2; i >= 0; i--) {
       if (perebor[i] > 0) {
-        perebor[i+1]+=(coins[i])/coins[i+1];
+        int inc = (coins[i]) / coins[i + 1];
+        perebor[i+1]+= inc;
+        int value = inc*coins[i+1];
+        if (value < coins[i]) {
+          perebor[i+2]+=(coins[i]-value)/coins[i+2];
+        }
+
         perebor[i]--;
         if (i<=perebor.length-3) {
           //return all 5 from 1, 10 from 5 again
           for (int j = perebor.length -2; j>i; j--) {
-            int deleted = perebor[j + 1] / coins[j];
+            int deleted = (perebor[j + 1]*coins[j+1]) / coins[j];
             perebor[j]+= deleted;
-            perebor[j+1]-=deleted*coins[j];
+            int count = deleted * coins[j];
+            perebor[j+1]-= count/coins[j+1];
           }
         }
         printArray(perebor, coins);
@@ -57,12 +64,12 @@ public class Coins {
       System.out.print(aPerebor + ",");
     }
     System.out.println("");
-//    for (int i=0; i<coins.length; i++) {
-//      if (perebor[i] > 0) {
-//        System.out.print(perebor[i] + " монеты " + coins[i] + ",");
-//      }
-//    }
-//    System.out.println("");
+    for (int i=0; i<coins.length; i++) {
+      if (perebor[i] > 0) {
+        System.out.print(perebor[i] + " монеты " + coins[i] + ",");
+      }
+    }
+    System.out.println("");
 
     return true;
   }
