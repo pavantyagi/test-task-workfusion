@@ -8,7 +8,7 @@ public class Coins {
   public static void main(String[] args) {
     int[] coins = {25, 10, 5, 1};
     int arr[] = new int[coins.length];
-    int number = 100;
+    int number = 1000;
     int i = 0 ;
     int diff = number;
     while (i <= coins.length -1) {
