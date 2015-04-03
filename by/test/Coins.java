@@ -64,10 +64,17 @@ public class Coins {
       System.out.print(aPerebor + ",");
     }
     System.out.println("");
+    int sum =0;
     for (int i=0; i<coins.length; i++) {
       if (perebor[i] > 0) {
         System.out.print(perebor[i] + " монеты " + coins[i] + ",");
+        sum+=perebor[i]*coins[i];
       }
+    }
+    if (sum == 0) {
+      throw new NullPointerException("ответ неправильный");
+    } else {
+      System.out.println("сумма " + sum);
     }
     System.out.println("");
 
